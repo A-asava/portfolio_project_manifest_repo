@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "todo-app.fullname" . }}
+  labels:
+    {{- include "todo-app.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}  # Use `service.type` from values.yaml
+  ports:
+    - port: 80
+      targetPort: {{ .Values.service.port }}  # Use `service.port` from values.yaml
+      protocol: TCP
+      name: http
+      nodePort: 31000
+  selector:
+    {{- include "todo-app.selectorLabels" . | nindent 4 }}
+

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: todo-app=mudeizi/cicd-e2e
+    argocd-image-updater.argoproj.io/write-back-method: git
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/A-asava/portfolio_project_manifest_repo.git
+    path: todo-app  # The path pointing to the Helm chart (directory containing Helm chart)
+    targetRevision: HEAD
+    chart: ""
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
