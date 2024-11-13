@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: image.name
+    value: mudeizi/cicd-e2e
+    forcestring: true
+  - name: image.tag
+    value: "55"
+    forcestring: true
