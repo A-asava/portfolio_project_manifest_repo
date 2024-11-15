@@ -4,5 +4,5 @@ helm:
     value: mudeizi/cicd-e2e
     forcestring: true
   - name: image.tag
-    value: "89"
+    value: "90"
     forcestring: true
